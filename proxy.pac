@@ -1,8 +1,8 @@
 function FindProxyForURL(url, host) {
 	// proxy list
 	var proxies = [
+      		// block list (optional)
 		{
-      			// block list (optional)
 			value: "PROXY 127.0.0.1:65535",
 			links: [
 				"*.googletagservices.com"
