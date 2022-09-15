@@ -36,11 +36,12 @@ function FindProxyForURL(url, host) {
 		}
 	];
 	
-	// defining default fallback proxy (optional)
-	var fallback = { value: "default-proxy.example.lan:8080" };
+	// default fallback proxy (optional)
+	var fallback = { value: "PROXY default-proxy.example.lan:8080" };
+	//var fallback = { value: "DIRECT" };
 	
-	// Returns Url or host
-	// depending of the match-string type
+	// Returns Url or host depending
+	// on the match-string type
 	function urlOrHost(string) {
 		// check if string contains protocol (ftp/http/s)
 		var pattern = /^(ft|htt)ps?:\/\//i;
@@ -52,38 +53,38 @@ function FindProxyForURL(url, host) {
 	// and invokes the respective function
 	// depending on the datatype
 	function matchData(variable) {
-		// RegExp data type
+		// if variable is RegExp datatype
 		if (variable instanceof RegExp) {
-			// check by RegExp
+			// test passed value by RegExp
 			// returns Boolean
 			return variable.test(url);
 		}
-		// String datatype
+		// string datatype
 		else if (typeof variable == "string") {
-			// Shell Expression
+			// shell expression
 			return shExpMatch(urlOrHost(variable), variable);
 		}
 	}
 	
-	// defining neccessary variables
+	// neccessary variables
 	var i, j, proxy, link;
 	
-	// iterate defined proxies
+	// iterate through defined proxies
 	for (i in proxies) {
 		// current proxy
 		proxy = proxies[i];
-		// iterating though hosts/urls
+		// iterating through hosts/urls
 		for (j in proxy.links) {
 			// current host/url
 			link = proxy.links[j];
-			// check if host/url matches with
-			// Shell Expression
+			// check if host/url matches
+			// with shell expression
 			if (matchData(link)) {
-				// In case of match return respective proxy
+				//in case of match, return respective proxy
 				return proxy.value;
 			}
 		}
 	}
-	// returning default/fallback proxy
+	// return default/fallback proxy
 	return fallback.value;
 }
