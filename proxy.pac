@@ -66,7 +66,7 @@ function FindProxyForURL(url, host) {
 		}
 	}
 	
-	// neccessary variables
+	// necessary variables
 	var i, j, proxy, link;
 	
 	// iterate through defined proxies
