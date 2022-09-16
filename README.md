@@ -1,7 +1,6 @@
-# pac
-## Proxy Auto-Configuration
+# Proxy Auto-Configuration
 You can deploy a list of objects which contains a pac return string (proxy, direct, ...). Additionally it is possible define urls/hosts/regex which will be compared with the requested host/url. If the request host/url matches the list entries, the respective value string will be returned.
-### proxy.pac:
+## proxy.pac:
 ```
 [...]
 var proxies = [
